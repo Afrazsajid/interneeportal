@@ -26,11 +26,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Internee.pk",
     description: "Internee.pk | Pakistan's Virtual Internship Platform",
-    url: "https://yourwebsite.com",
-    siteName: "internee.pk",
+    url: "https://interneeportal.vercel.app/",
+    siteName: "interneeportal.vercel.app/",
     images: [
       {
-        url: "https://yourwebsite.com/og-image.png", // Replace with your OG image URL
+        url: "https://res.cloudinary.com/dsfm7zxhg/image/upload/v1738184931/Screenshot_248_th9gj9.png", // Replace with your OG image URL
         width: 1200,
         height: 630,
       },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Internee.pk",
     description: "Internee.pk | Pakistan's Virtual Internship Platform",
-    images: ["https://yourwebsite.com/og-image.png"], // Replace with your OG image URL
+    images: ["https://res.cloudinary.com/dsfm7zxhg/image/upload/v1738184931/Screenshot_248_th9gj9.png"], // Replace with your OG image URL
   },
 };
 
