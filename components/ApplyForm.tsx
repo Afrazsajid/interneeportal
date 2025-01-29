@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -24,14 +24,15 @@ import "react-toastify/dist/ReactToastify.css";
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Invalid email address." }),
-  internshipref: z.string().min(1, { message: "Please select a framework." }),
+  phoneNumber: z.string().min(11, { message: "give me your phone number" }),
+  internshipref: z.string().min(1, { message: "Please select a Internship" }),
 });
 
 interface FormData {
   name: string;
   email: string;
-  internshipref: string;
   phoneNumber: string;
+  internshipref: string;
 }
 
 interface ApplyFormProps {
@@ -44,14 +45,19 @@ export function ApplyForm({ internshiprefData }: ApplyFormProps) {
     defaultValues: {
       name: "",
       email: "",
+      phoneNumber: "",
       internshipref: "",
-      phoneNumber: ""
     },
   });
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  async function onSubmit(values: { name: string; email: string; internshipref: string }) {
+  async function onSubmit(values: {
+    phoneNumber: any;
+    name: string;
+    email: string;
+    internshipref: string;
+  }) {
     console.log("Submitted Data:", values);
 
     setIsSubmitting(true);
@@ -65,6 +71,7 @@ export function ApplyForm({ internshiprefData }: ApplyFormProps) {
         body: JSON.stringify({
           name: values.name,
           email: values.email,
+          phoneNumber: values.phoneNumber,
           internshipref: values.internshipref,
         }),
       });
@@ -81,7 +88,7 @@ export function ApplyForm({ internshiprefData }: ApplyFormProps) {
           pauseOnHover: true,
           draggable: true,
           theme: "light",
-          className: "bg-green-600 text-white px-4 py-3 rounded-lg shadow-md"
+          className: "bg-green-600 text-white px-4 py-3 rounded-lg shadow-md",
         });
       } else {
         console.error("Error:", data);
@@ -93,7 +100,7 @@ export function ApplyForm({ internshiprefData }: ApplyFormProps) {
           pauseOnHover: true,
           draggable: true,
           theme: "light",
-          className: "bg-red-600 text-white px-4 py-3 rounded-lg shadow-md"
+          className: "bg-red-600 text-white px-4 py-3 rounded-lg shadow-md",
         });
       }
     } catch (error) {
@@ -106,7 +113,7 @@ export function ApplyForm({ internshiprefData }: ApplyFormProps) {
         pauseOnHover: true,
         draggable: true,
         theme: "light",
-        className: "bg-red-600 text-white px-4 py-3 rounded-lg shadow-md"
+        className: "bg-red-600 text-white px-4 py-3 rounded-lg shadow-md",
       });
     } finally {
       setIsSubmitting(false);
@@ -181,9 +188,15 @@ export function ApplyForm({ internshiprefData }: ApplyFormProps) {
             name="internshipref"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-700">Preferred Internship</FormLabel>
+                <FormLabel className="text-gray-700">
+                  Preferred Internship
+                </FormLabel>
                 <FormControl>
-                  <CosCombobox items={internshiprefData} value={field.value} onChange={field.onChange} />
+                  <CosCombobox
+                    items={internshiprefData}
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage className="text-red-500" />
               </FormItem>

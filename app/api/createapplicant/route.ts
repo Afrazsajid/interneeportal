@@ -30,7 +30,7 @@ export async function POST(req: Request) {
         _type: "reference",
         _ref: applicantData.internshipref, // Reference to internship
       },
-      phonenumber: applicantData.phonenumber || "", // Optional phone number
+      phonenumber: applicantData.phoneNumber || "g", // Optional phone number
     };
 
     console.log("Applicant Object to be created:", fullApplicant); // Log the object to check
@@ -136,7 +136,7 @@ export async function POST(req: Request) {
       <p>Best regards,<br>The Team</p>
     </div>
 
-    <a href="https://yourwebsite.com" class="button">Visit Our Website</a>
+    <a style="color: #ffffff;"href="https://yourwebsite.com" class="button">Visit Our Website</a>
 
     <div class="footer">
       <p>&copy; 2025 Company Name. All rights reserved.</p>
