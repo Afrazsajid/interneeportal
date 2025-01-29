@@ -125,6 +125,23 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
+export type Applicant = {
+  _id: string;
+  _type: "applicant";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  email?: string;
+  internshiprefrence?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "internship";
+  };
+  phonenumber?: string;
+};
+
 export type Internship = {
   _id: string;
   _type: "internship";
@@ -163,11 +180,11 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Internship | Category | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Applicant | Internship | Category | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/lib/getInternShips/getInternShips.ts
+// Source: ./sanity/lib/getInternBySearch/getInternBySearch.tsx
 // Variable: SEARCH_INTERNSHIPS_QUERY
-// Query: *[_type == "internship" ] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      internshipslug,      companyname,      description,      status,      isActive    }
+// Query: *[_type == "internship" && (title match "" || companyname match "") ] {      _id,      _type,      _createdAt,      _updatedAt,      _rev,      title,      internshipslug,      companyname,      description,      status,      isActive    }
 export type SEARCH_INTERNSHIPS_QUERYResult = Array<{
   _id: string;
   _type: "internship";
@@ -186,6 +203,6 @@ export type SEARCH_INTERNSHIPS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n    *[_type == \"internship\" ] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      internshipslug,\n      companyname,\n      description,\n      status,\n      isActive\n    }\n  ": SEARCH_INTERNSHIPS_QUERYResult;
+    "\n    *[_type == \"internship\" && (title match \"\" || companyname match \"\") ] {\n      _id,\n      _type,\n      _createdAt,\n      _updatedAt,\n      _rev,\n      title,\n      internshipslug,\n      companyname,\n      description,\n      status,\n      isActive\n    }\n  ": SEARCH_INTERNSHIPS_QUERYResult;
   }
 }

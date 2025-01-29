@@ -7,6 +7,6 @@ export const backendclient = createClient({
   dataset,
   apiVersion,
   useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
-  token:process.env.SANITY_API_TOKEN
+  token:process.env.SANITY_BACKEND_TOKEN
   
 })
